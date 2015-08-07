@@ -1,0 +1,12 @@
+{
+  "name": "node-ahrefs",
+  "version": "0.0.1",
+  "author": "ybonnefond",
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
+}
