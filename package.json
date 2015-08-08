@@ -1,5 +1,21 @@
 {
-  "name": "node-ahrefs",
+  "name": "ahrefs",
+  "description": "Ahrefs API Nodejs client",
+  "keywords": ["ahrefs", "ahrefs.com", "seo"],
+  "homepage": "https://github.com/optimizme/ahrefs",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/optimizme/ahrefs.git"
+  },
+  "bugs": {
+    "url": "http://github.com/optimizme/ahrefs/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Yannick Bonnefond",
+    "email": "yannick.bonnefond@gmail.com",
+    "url": "http://github.com/ybonnefond/"
+  },
   "version": "0.0.1",
   "author": "Bambou",
   "dependencies": {
@@ -9,6 +25,7 @@
   "devDependencies": {
     "jasmine": "^2.3.2"
   },
+  "main": "./lib/Ahrefs.js",
   "scripts": {
     "test": "jasmine JASMINE_CONFIG_PATH=spec/support/jasmine.json"
   },
