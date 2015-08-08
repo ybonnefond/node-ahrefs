@@ -1,6 +1,6 @@
 var conf = require('./support/conf');
 
-describe('QueryBuilder', function () {
+describe('QueryValidator', function () {
   var validator = require('../lib/QueryValidator');
   var rules = require('../lib/rules');
 
@@ -21,14 +21,29 @@ describe('QueryBuilder', function () {
       })
     }).toThrow();
 
-    // All good
     expect(function(){
       validator.checkMandatories({
         params: {
-          "token": 'a', "from":'a', "target":'a', "mode":'a'
+          "token": 'a', "from":'a', "target":'a', "mode":'domain'
         }
       })
     }).not.toThrow();
+
+    expect(function(){
+      validator.checkMandatories({
+        params: {
+          "token": 'a', "from":'subscription_info'
+        }
+      })
+    }).not.toThrow();
+
+    expect(function(){
+      validator.checkMandatories({
+        params: {
+          "token": 'a', "from":'a', 'target': 'a', 'mode': 'test'
+        }
+      })
+    }).toThrow();
   });
 
   it('should check if column exists', function () {
@@ -70,6 +85,53 @@ describe('QueryBuilder', function () {
         params: {
           from: 'ahrefs_rank',
           select: ['url', 'ahrefs_rank', 'test']
+        }
+      })
+    }).toThrow();
+  });
+
+  it('should check orderBy param', function () {
+
+    expect(function(){
+      validator.checkOrderBy({
+        params: {
+          from: 'ahrefs_rank'
+        }
+      })
+    }).not.toThrow();
+
+    expect(function(){
+      validator.checkOrderBy({
+        params: {
+          from: 'ahrefs_rank',
+          order_by: ['url', 'ahrefs_rank']
+        }
+      })
+    }).not.toThrow();
+
+    expect(function(){
+      validator.checkOrderBy({
+        params: {
+          from: 'ahrefs_rank',
+          order_by: ['url', 'ahrefs_rank', 'test']
+        }
+      })
+    }).toThrow();
+
+    expect(function(){
+      validator.checkOrderBy({
+        params: {
+          from: 'ahrefs_rank',
+          order_by: ['ahrefs_rank:desc']
+        }
+      })
+    }).not.toThrow();
+
+    expect(function(){
+      validator.checkOrderBy({
+        params: {
+          from: 'ahrefs_rank',
+          order_by: ['ahrefs_rank:test']
         }
       })
     }).toThrow();

@@ -45,6 +45,18 @@ describe('Query', function () {
       query.output('xml');
       expect(query.params.output).toEqual('xml');
     });
+    it('should set the mode', function(){
+      query.mode('domain');
+      expect(query.params.mode).toEqual('domain');
+    });
+    it('should set the from table parameter', function(){
+      query.from('anchors');
+      expect(query.params.from).toEqual('anchors');
+    });
+    it('should set the token parameter', function(){
+      query.token('123456');
+      expect(query.params.token).toEqual('123456');
+    });
   });
 
   describe('select', function(){
@@ -68,25 +80,50 @@ describe('Query', function () {
     });
   });
 
-  describe('order', function(){
+  describe('orderBy', function(){
     it('should order by using parameters', function(){
-      query.select('domain_rating:desc','refdomain');
-      expect(query.params.select).toEqual(['domain_rating:desc','refdomain']);
+      query.orderBy('domain_rating:desc','refdomain');
+      expect(query.params.order_by).toEqual(['domain_rating:desc','refdomain']);
     });
     it('should order by using an array', function(){
-      query.select(['domain_rating:desc','refdomain']);
-      expect(query.params.select).toEqual(['domain_rating:desc','refdomain']);
+      query.orderBy(['domain_rating:desc','refdomain']);
+      expect(query.params.order_by).toEqual(['domain_rating:desc','refdomain']);
     });
     it('should order by using a string', function(){
-      query.select('domain_rating:desc');
-      expect(query.params.select).toEqual(['domain_rating:desc']);
+      query.orderBy('domain_rating:desc');
+      expect(query.params.order_by).toEqual(['domain_rating:desc']);
     });
     it('should append multiple order by calls', function(){
       query
-        .select('domain_rating:desc','refdomain')
-        .select(['date:desc','type']);
-      expect(query.params.select).toEqual(['domain_rating:desc','refdomain','date:desc','type']);
+        .orderBy('domain_rating:desc','refdomain')
+        .orderBy(['date:desc','type']);
+      expect(query.params.order_by).toEqual(['domain_rating:desc','refdomain','date:desc','type']);
     });
   });
 
+
+  describe('where', function(){
+    it('should add a where parameter', function(){
+      query.where('lt', 'anchor', 1);
+      expect(query.params.where.length).toEqual(1);
+    });
+    it('should append multiple order by calls', function(){
+        query.where('lt', 'anchor', 1);
+        query.where('lt', 'anchor', 1);
+        expect(query.params.where.length).toEqual(2);
+    });
+  });
+
+
+  describe('having', function(){
+    it('should add a where parameter', function(){
+      query.having('lt', 'anchor', 1);
+      expect(query.params.having.length).toEqual(1);
+    });
+    it('should append multiple order by calls', function(){
+        query.having('lt', 'anchor', 1);
+        query.having('lt', 'anchor', 1);
+        expect(query.params.having.length).toEqual(2);
+    });
+  });
 });
