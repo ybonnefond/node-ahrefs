@@ -8,8 +8,12 @@
   npm install ahrefs
 ```
 
+## API
 
-## Usage
+@see [Api documentation]('./doc/api.md')
+
+
+## Basic Usage
 
 Require the module and pass your options:
 
@@ -35,10 +39,7 @@ var query = ahrefs.newQuery()
   .from('ahrefs_rank');
 ```
 
-Finally make the request and get the result. The err passed to the callback may contain:
-- Any error raised by the module `request` when executing the request. i.e http errors
-- Any XML or JSON parsing errors
-- Any error returned by ahrefs
+Make the request and get the result :
 
 ```javascript
 // Make a get request
@@ -52,23 +53,7 @@ ahrefs.post(query, function(err, result){
 });
 ```
 
-### Query methods
-
-| Method      | Req. | Default | Multi | Description                                                    | Example                                                                               |
-|-------------|------|---------|-------|----------------------------------------------------------------|---------------------------|
-| **target**  | Y    |     | N     | Aim of a request: a domain, a directory or a URL               | query.target('ahrefs.com')|
-| **from**    | Y    |       | N     | Table to select data from                                      | query.from('anchors')|
-| **mode**    | N    | 'exact' | N     | Mode of operation: `exact`, `domain`, `subdomains` or `prefix` | query.mode('domain')|
-| **output**  | N    | 'json'  | N     | Output format: xml, json                                       | query.output('xml')|
-| **select**  | N    |         | Y     | List of columns to select                                      | query.select('backlink', 'anchor') or query.select(['backlink', 'anchor']) |
-| **where**   | N    |         | Y     | "Where" condition to satisfy                                   | query.where('lt', 'backlinks', 10) |
-| **having**  | N    |         | Y     | "Having" condition to satisfy                                  | query.having('lt', 'backlinks', 10) |
-| **orderBy** | N    |         | Y     | List of columns to sort on                                     | query.orderBy('backlink', 'anchor:desc') or query.orderBy(['backlink:asc', 'anchor']) |
-| **limit**   | N    | 1000    | N     | Number of results to return                                    | query.limit(10) |
-| **offset**  | N    |         | N     | Position from which to start returning data                    | query.offset(10)|
-
-
-### Complete Example
+## Complete Example
 
 ```javascript
 
