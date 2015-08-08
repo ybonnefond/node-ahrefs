@@ -1,58 +1,14 @@
-var conf = require('./support/conf');
-
-describe('QueryBuilder', function () {
-  var QueryBuilder = require('../lib/QueryBuilder');
+describe('Query', function () {
+  var conf = require('./support/conf');
+  var Query = require('../lib/Query');
   var rules = require('../lib/rules');
-
   var query;
 
-  beforeEach(function(){ query = new QueryBuilder(conf.target); });
+  beforeEach(function(){ query = new Query(conf.target); });
 
   it('should initialize the query', function () {
     expect(query.params.mode).toEqual('exact');
     expect(query.params.output).toEqual('json');
-  });
-
-  describe('_wrapValue', function(){
-    it('should add quote and backslashes to a quoted type', function(){
-
-      rules.quotedValue.forEach(function(type){
-        var t = query._wrapValue("This 'quoted' text", type);
-        expect(t).toEqual('"This \\\'quoted\\\' text"');
-      });
-
-    });
-
-    it('should wrap a string', function(){
-      var t = query._wrapValue("This 'quoted' text", 'url');
-      expect(t).toEqual('"This \\\'quoted\\\' text"');
-    });
-
-    it('should wrap a date', function(){
-      var t = query._wrapValue("This 'quoted' text", 'first_seen');
-      expect(t).toEqual('"This \\\'quoted\\\' text"');
-    });
-
-    it('should wrap a int', function(){
-      var t = query._wrapValue(12, 'ahrefs_rank');
-      expect(t).toEqual(12);
-    });
-
-    it('should wrap a boolean', function(){
-      var t = query._wrapValue(true, 'sitewide');
-      expect(t).toEqual('true');
-      var t = query._wrapValue(false, 'sitewide');
-      expect(t).toEqual('false');
-    });
-
-  });
-
-  describe('quote', function(){
-    it('should add quote and backslashes to a quoted type', function(){
-      expect(query._quote('Unquoted text')).toEqual("\"Unquoted text\"");
-      expect(query._quote("This 'quoted' text")).toEqual('"This \\\'quoted\\\' text"');
-      expect(query._quote('This "quoted" text')).toEqual("\"This \\\"quoted\\\" text\"");
-    });
   });
 
   describe('setParam', function(){
@@ -88,17 +44,6 @@ describe('QueryBuilder', function () {
     it('should set the output to XML', function(){
       query.output('xml');
       expect(query.params.output).toEqual('xml');
-    });
-  });
-
-  describe('_buildCondition', function(){
-    it('should build an operator based condition', function(){
-      var cond = query._buildCondition('gt', 'ahrefs_rank', 10);
-      expect(cond).toEqual('ahrefs_rank>10');
-    });
-    it('should build a non operator based condition', function(){
-      var cond = query._buildCondition('substring', 'url_from', 'test');
-      expect(cond).toEqual('substring(url_from,\"test\")');
     });
   });
 

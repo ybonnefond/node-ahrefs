@@ -2,7 +2,10 @@
   "name": "node-ahrefs",
   "version": "0.0.1",
   "author": "Bambou",
-  "dependencies": {},
+  "dependencies": {
+    "request": "^2.60.0",
+    "xml2js": "^0.4.10"
+  },
   "devDependencies": {
     "jasmine": "^2.3.2"
   },
