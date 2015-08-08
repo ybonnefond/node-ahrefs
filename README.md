@@ -10,7 +10,7 @@
 
 ## API
 
-@see [Api documentation]('docs/api.md')
+@see [Api documentation](docs/api.md)
 
 
 ## Basic Usage
