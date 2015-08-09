@@ -1,6 +1,7 @@
 # Ahrefs
 
-[Ahrefs api documentation](https://ahrefs.com/api/documentation)
+- [Get an Ahrefs token](https://ahrefs.com/api/profile)
+- [Ahrefs api documentation](https://ahrefs.com/api/documentation)
 
 ## installation
 
