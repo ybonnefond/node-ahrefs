@@ -92,6 +92,7 @@ You can also run the tests agains your own target if needed (default is `ahrefs.
 
 **All tests run using `ahrefs.com` domain and therefore does not cost a peny**
 
-# Thanks
+# Special Thanks
 Developed for <a target="_blank" href="http://optimiz.me">Optimiz.me</a>, an online software designed to help working the SEO optimisation of your web site, by yourself, without the need of technical knowledge.
+
 Développé pour Optimiz.me, un logiciel en ligne conçu pour aider à travailler l'optimisation du référencement de votre site web, par vous-même, sans besoin de connaissances techniques.
