@@ -91,3 +91,6 @@ You can also run the tests agains your own target if needed (default is `ahrefs.
 ```
 
 **All tests run using `ahrefs.com` domain and therefore does not cost a peny**
+
+# Thanks
+Developed for [Optimiz.me](http://optimiz.me), un logiciel qui permet d'optimiser soi-même le référencement de son site web, sans besoin de connaissances techniques
