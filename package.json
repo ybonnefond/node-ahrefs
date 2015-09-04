@@ -2,13 +2,13 @@
   "name": "ahrefs",
   "description": "Ahrefs API Nodejs client",
   "keywords": ["ahrefs", "ahrefs.com", "seo"],
-  "homepage": "https://github.com/optimizme/ahrefs",
+  "homepage": "https://github.com/ybonnefond/node-ahrefs",
   "repository": {
     "type": "git",
-    "url": "git://github.com/optimizme/ahrefs.git"
+    "url": "git://github.com/ybonnefond/node-ahrefs.git"
   },
   "bugs": {
-    "url": "http://github.com/optimizme/ahrefs/issues"
+    "url": "http://github.com/ybonnefond/node-ahrefs/issues"
   },
   "license": "MIT",
   "author": {
