@@ -1,7 +1,7 @@
 {
   "name": "ahrefs",
   "description": "Ahrefs API Nodejs client",
-  "keywords": ["ahrefs", "ahrefs.com", "seo"],
+  "keywords": ["ahrefs", "ahrefs.com", "seo", "ahrefs api"],
   "homepage": "https://github.com/ybonnefond/node-ahrefs",
   "repository": {
     "type": "git",
