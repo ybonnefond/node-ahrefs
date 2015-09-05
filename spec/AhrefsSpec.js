@@ -17,6 +17,18 @@ describe('UrlEncoder', function () {
     });
   });
 
+  it('should get a validation error', function (done) {
+    var query = ahrefs.newQuery()
+      .target(conf.target)
+      .mode('domain')
+      .from('test')
+      .limit(10);
+    ahrefs.get(query, function(err, result){
+      expect(err instanceof ahrefs.ValidationError).toEqual(true);
+      done();
+    });
+  });
+
   it('should execute query and get a json result', function (done) {
     var query = ahrefs.newQuery()
       .target(conf.target)
