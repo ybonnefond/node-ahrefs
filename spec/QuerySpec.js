@@ -1,7 +1,6 @@
 describe('Query', function () {
   var conf = require('./support/conf');
   var Query = require('../lib/Query');
-  var rules = require('../lib/rules');
   var query;
 
   beforeEach(function(){ query = new Query(conf.target); });

@@ -4,8 +4,6 @@ describe('QueryValidator', function () {
   var validator = require('../lib/QueryValidator');
   var ValidationError = require('../lib/ValidationError');
 
-  var rules = require('../lib/rules');
-
   it('should checkMandatories', function () {
     // Missing parameters
     expect(function(){

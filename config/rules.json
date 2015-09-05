@@ -1,15 +1,4 @@
-
-/**
- * AhrefsAPI v.0.1. Ahrefs.com API V2 wrapper for Nodejs
- *
- * https://ahrefs.com/api/documentation.php
- *
- * @property {object} where		  Translation for "where" and "having" functions
- * @property {object} functions	List of available functions
- * @property {object} column 	  List of available column for "select", "order_by", "where" and "having"
- *
- */
-module.exports = exports = {
+{
   "modes": ["exact", "domain", "subdomains", "prefix"],
   "output": ["json", "xml"],
   "quotedValue": ["substring", "word", "subdomain"],
@@ -70,12 +59,12 @@ module.exports = exports = {
       "refdomains_new_lost",
       "refdomains_new_lost_counters"
     ],
-    "order": ["by"],
+    "order": ["by"]
   },
   "columns": {
     "ahrefs_rank": {
       "url": ["string", true, true],
-      "ahrefs_rank": ["int", false, true],
+      "ahrefs_rank": ["int", false, true]
     },
     "anchors": {
       "anchor": ["string", true, true],
@@ -84,13 +73,13 @@ module.exports = exports = {
       "refdomain": ["string", true, false],
       "refdomains": ["int", false, true],
       "first_seen": ["date", true, true],
-      "last_visited": ["date", true, true],
+      "last_visited": ["date", true, true]
     },
     "anchors_refdomains": {
       "anchor": ["string", true, false],
       "anchors": ["int", false, true],
       "backlinks": ["int", true, true],
-      "refdomain": ["string", true, true],
+      "refdomain": ["string", true, true]
     },
     "backlinks": {
       "url_from": ["string", true, true],
@@ -114,7 +103,7 @@ module.exports = exports = {
       "alt": ["string", true, true],
       "anchor": ["string", true, true],
       "text_pre": ["string", true, true],
-      "text_post": ["string", true, true],
+      "text_post": ["string", true, true]
     },
     "backlinks_new_lost": {
       "date": ["date", true, true],
@@ -140,7 +129,7 @@ module.exports = exports = {
       "alt": ["string", true, true],
       "anchor": ["string", true, true],
       "text_pre": ["string", true, true],
-      "text_post": ["string", true, true],
+      "text_post": ["string", true, true]
     },
     "backlinks_new_lost_counters": {
       "date": ["date", true, true],
@@ -170,7 +159,7 @@ module.exports = exports = {
       "new": ["int", false, true],
       "lost": ["int", false, true],
       "new_total": ["int", false, true],
-      "lost_total": ["int", false, true],
+      "lost_total": ["int", false, true]
     },
     "broken_backlinks": {
       "url_from": ["string", true, true],
@@ -197,7 +186,7 @@ module.exports = exports = {
       "text_post": ["string", true, true],
       "broken_at": ["date", true, true],
       "http_code": ["int", true, true],
-      "error": ["string", true, true],
+      "error": ["string", true, true]
     },
     "broken_links": {
       "url_from": ["string", true, true],
@@ -224,10 +213,10 @@ module.exports = exports = {
       "text_post": ["string", true, true],
       "broken_at": ["date", true, true],
       "http_code": ["int", true, true],
-      "error": ["string", true, true],
+      "error": ["string", true, true]
     },
     "domain_rating": {
-      "domain_rating": ["int", false, true],
+      "domain_rating": ["int", false, true]
     },
     "linked_anchors": {
       "anchor": ["string", true, true],
@@ -258,7 +247,7 @@ module.exports = exports = {
       "domain_to": ["string", false, true],
       "links": ["int", false, true],
       "unique_pages": ["int", false, true],
-      "domain_to_rating": ["int", false, true],
+      "domain_to_rating": ["int", false, true]
     },
     "metrics": {
       "backlinks": ["int", false, false],
@@ -275,7 +264,7 @@ module.exports = exports = {
       "edu": ["int", false, false],
       "html_pages": ["int", false, false],
       "links_internal": ["int", false, false],
-      "links_external": ["int", false, false],
+      "links_external": ["int", false, false]
     },
     "metrics_extended": {
       "backlinks": ["int", false, false],
@@ -295,7 +284,7 @@ module.exports = exports = {
       "links_external": ["int", false, false],
       "refdomains": ["int", false, false],
       "refclass_c": ["int", false, false],
-      "refips": ["int", false, false],
+      "refips": ["int", false, false]
     },
     "pages": {
       "url": ["string", true, true],
@@ -308,7 +297,7 @@ module.exports = exports = {
       "encoding": ["string", true, true],
       "title": ["string", true, true],
       "redirect_url": ["string", true, true],
-      "content_encoding": ["string", true, true],
+      "content_encoding": ["string", true, true]
     },
     "pages_extended": {
       "url": ["string", true, true],
@@ -328,7 +317,7 @@ module.exports = exports = {
       "redirects": ["int", true, true],
       "refdomains": ["int", true, true],
       "refclass_c": ["int", true, true],
-      "refips": ["int", true, true],
+      "refips": ["int", true, true]
     },
     "refdomains": {
       "url": ["string", true, false],
@@ -338,7 +327,7 @@ module.exports = exports = {
       "refpages": ["int", true, true],
       "first_seen": ["date", true, true],
       "last_visited": ["date", true, true],
-      "domain_rating": ["int", false, true],
+      "domain_rating": ["int", false, true]
     },
     "refdomains_by_type": {
       "url": ["string", true, false],
@@ -359,7 +348,7 @@ module.exports = exports = {
       "refpages": ["int", true, true],
       "first_seen": ["date", true, true],
       "last_visited": ["date", true, true],
-      "domain_rating": ["int", false, true],
+      "domain_rating": ["int", false, true]
     },
     "refdomains_new_lost_counters": {
       "date": ["date", true, true],
@@ -368,23 +357,23 @@ module.exports = exports = {
       "new": ["int", false, true],
       "lost": ["int", false, true],
       "new_total": ["int", false, true],
-      "lost_total": ["int", false, true],
+      "lost_total": ["int", false, true]
     },
     "refdomains_new_lost": {
       "date": ["date", true, true],
       "type": ["string", true, true],
       "refdomain": ["string", true, true],
-      "domain_rating": ["int", false, true],
+      "domain_rating": ["int", false, true]
     },
     "refips": {
       "refip": ["string", true, true],
       "refdomain": ["string", true, true],
-      "backlinks": ["int", true, true],
+      "backlinks": ["int", true, true]
     },
     "subscription_info": {
       "rows_left": ["int", false, false],
       "rows_limit": ["int", false, false],
-      "subscription": ["string", false, false],
+      "subscription": ["string", false, false]
     }
   }
 }

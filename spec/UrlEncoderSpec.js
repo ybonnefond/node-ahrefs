@@ -1,7 +1,7 @@
 describe('UrlEncoder', function () {
   var conf = require('./support/conf');
   var encoder = require('../lib/UrlEncoder');
-  var rules = require('../lib/rules');
+  var rules = require('../lib/QueryValidator').rules;
   var query;
 
 
