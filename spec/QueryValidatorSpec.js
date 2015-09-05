@@ -2,6 +2,8 @@ var conf = require('./support/conf');
 
 describe('QueryValidator', function () {
   var validator = require('../lib/QueryValidator');
+  var ValidationError = require('../lib/ValidationError');
+
   var rules = require('../lib/rules');
 
   it('should checkMandatories', function () {
@@ -10,7 +12,7 @@ describe('QueryValidator', function () {
       validator.checkMandatories({
         params: {}
       })
-    }).toThrow();
+    }).toThrowError(ValidationError);
 
     // Empty parameters
     expect(function(){
@@ -19,7 +21,7 @@ describe('QueryValidator', function () {
           "token": '', "from":'', "target":'', "mode":''
         }
       })
-    }).toThrow();
+    }).toThrowError(ValidationError);
 
     expect(function(){
       validator.checkMandatories({
@@ -43,7 +45,29 @@ describe('QueryValidator', function () {
           "token": 'a', "from":'a', 'target': 'a', 'mode': 'test'
         }
       })
-    }).toThrow();
+    }).toThrowError(ValidationError);
+  });
+
+
+  it('should check the from parameter', function () {
+    expect(function(){
+      validator.checkFrom({
+      })
+    }).toThrowError(ValidationError);
+    expect(function(){
+      validator.checkFrom({
+        params: {
+          from: 'test'
+        }
+      })
+    }).toThrowError(ValidationError);
+    expect(function(){
+      validator.checkFrom({
+        params: {
+          from: 'ahrefs_rank'
+        }
+      })
+    }).not.toThrow();
   });
 
   it('should check if column exists', function () {
@@ -53,6 +77,12 @@ describe('QueryValidator', function () {
         from: 'ahrefs_rank'
       }
     }, 'url')).toBeTruthy();
+
+    expect(validator._columnExists({
+      params: {
+        from: 'test'
+      }
+    }, 'test')).toBeFalsy();
 
     expect(validator._columnExists({
       params: {
@@ -87,7 +117,7 @@ describe('QueryValidator', function () {
           select: ['url', 'ahrefs_rank', 'test']
         }
       })
-    }).toThrow();
+    }).toThrowError(ValidationError);
   });
 
   it('should check orderBy param', function () {
@@ -116,7 +146,7 @@ describe('QueryValidator', function () {
           order_by: ['url', 'ahrefs_rank', 'test']
         }
       })
-    }).toThrow();
+    }).toThrowError(ValidationError);
 
     expect(function(){
       validator.checkOrderBy({
@@ -134,7 +164,7 @@ describe('QueryValidator', function () {
           order_by: ['ahrefs_rank:test']
         }
       })
-    }).toThrow();
+    }).toThrowError(ValidationError);
   });
 
 
@@ -168,7 +198,7 @@ describe('QueryValidator', function () {
           ]
         }
       })
-    }).toThrow();
+    }).toThrowError(ValidationError);
 
     expect(function(){
       validator.checkCondition('having', {
@@ -179,7 +209,7 @@ describe('QueryValidator', function () {
           ]
         }
       })
-    }).toThrow();
+    }).toThrowError(ValidationError);
   });
 
 });
