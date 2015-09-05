@@ -95,6 +95,12 @@ You can also run the tests agains your own target if needed (default is `ahrefs.
 
 **All tests run using `ahrefs.com` domain and therefore does not cost a peny**
 
+## Generate API documentation
+
+```bash
+  npm run-script doc
+```
+
 # Special Thanks
 Developed for <a target="_blank" href="http://optimiz.me">Optimiz.me</a>, an online software designed to help working the SEO optimisation of your web site, by yourself, without the need of technical knowledge.
 

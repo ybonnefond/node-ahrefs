@@ -1,205 +1,270 @@
-# Api
-
+## Classes
+<dl>
+<dt><a href="#Ahrefs">Ahrefs</a></dt>
+<dd></dd>
+<dt><a href="#Query">Query</a></dt>
+<dd></dd>
+<dt><a href="#ValidationError">ValidationError</a></dt>
+<dd></dd>
+</dl>
+## Members
+<dl>
+<dt><a href="#ValidationError">ValidationError</a> : <code><a href="#ValidationError">ValidationError</a></code></dt>
+<dd><p>Error class that will be thrown during the validation process</p>
+</dd>
+</dl>
+## Typedefs
+<dl>
+<dt><a href="#responseCallback">responseCallback</a> : <code>function</code></dt>
+<dd><p>Define a callback called on response</p>
+</dd>
+</dl>
+<a name="Ahrefs"></a>
 ## Ahrefs
+**Kind**: global class  
 
-```javascript
-  var ahrefs = require('ahrefs')({ token: <YOUR TOKEN> });
-```
+* [Ahrefs](#Ahrefs)
+  * [new Ahrefs(options)](#new_Ahrefs_new)
+  * [.newQuery()](#Ahrefs+newQuery) ⇒ <code>[Query](#Query)</code>
+  * [.get(query, callback)](#Ahrefs+get)
+  * [.post(query, callback)](#Ahrefs+post)
 
-- - -
+<a name="new_Ahrefs_new"></a>
+### new Ahrefs(options)
+Create a new Ahrefs instance
 
-### **ahrefs#newQuery() -> Query**
 
-Get a new query object
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>object</code> | List of options |
+| options.token | <code>string</code> | Ahrefs Token |
+| [options.url] | <code>string</code> | Ahrefs API url. Default: 'http://apiv2.ahrefs.com/' |
+| [options.validate] | <code>boolean</code> | Set to false to disable parameter validation. Default: true. |
 
-```javascript
-var query = ahrefs.newQuery();
-query.target('ahrefs.com');
-```
+<a name="Ahrefs+newQuery"></a>
+### ahrefs.newQuery() ⇒ <code>[Query](#Query)</code>
+Get a Query instance
 
-- - -
+**Kind**: instance method of <code>[Ahrefs](#Ahrefs)</code>  
+<a name="Ahrefs+get"></a>
+### ahrefs.get(query, callback)
+Perform a GET request
 
-### **ahrefs#get(_Query_ query, _Function_ callback)**
+**Kind**: instance method of <code>[Ahrefs](#Ahrefs)</code>  
+**Throws**:
 
-Send a get request to ahrefs.
+- <code>[ValidationError](#ValidationError)</code> 
 
-- **query** : a Query object
-- **callback**: Callback which is called when the request is complete. Which will receive the following parameters:
-  * **err**: The err passed to the callback may contain:
-    - Any error raised by the module `request` when executing the request. i.e     http errors
-    - Any XML or JSON parsing errors
-    - Any error returned by ahrefs
-  * **result**: Depend on the `output` parameter. It will contain a javascript object if output is `json` or a string representing the XML response if output is `xml`
 
-```javascript
-var query = ahrefs.newQuery()
-  .target('ahrefs.com')
-  .mode('domain')
-  .from('anchors');
+| Param | Type | Description |
+| --- | --- | --- |
+| query | <code>[Query](#Query)</code> | Query to execute |
+| callback | <code>[responseCallback](#responseCallback)</code> | Callback called on error or when received a response from the API |
 
-ahrefs.get(query, function(err, result){
-  if (!err && resul.anchors.length > 0) {
+<a name="Ahrefs+post"></a>
+### ahrefs.post(query, callback)
+Perform a POST request
 
-  }
-})
-```
+**Kind**: instance method of <code>[Ahrefs](#Ahrefs)</code>  
+**Throws**:
 
-- - -
+- <code>[ValidationError](#ValidationError)</code> 
 
-### **ahrefs#post(_Query_ query, _Function_ callback)**
-Same as get but send the request using http POST method.
-@see **ahrefs#get**
 
-- - -
+| Param | Type | Description |
+| --- | --- | --- |
+| query | <code>[Query](#Query)</code> | Query to execute |
+| callback | <code>[responseCallback](#responseCallback)</code> | Callback called on error or when received a response from the API |
 
+<a name="Query"></a>
 ## Query
+**Kind**: global class  
+
+* [Query](#Query)
+  * [new Query()](#new_Query_new)
+  * [.select(select)](#Query+select) ⇒ <code>[Query](#Query)</code>
+  * [.orderBy(select)](#Query+orderBy) ⇒ <code>[Query](#Query)</code>
+  * [.where(operator, column, value)](#Query+where) ⇒ <code>[Query](#Query)</code>
+  * [.having(operator, column, value)](#Query+having) ⇒ <code>[Query](#Query)</code>
+  * [.target(target)](#Query+target) ⇒ <code>[Query](#Query)</code>
+  * [.limit(limit)](#Query+limit) ⇒ <code>[Query](#Query)</code>
+  * [.offset(offset)](#Query+offset) ⇒ <code>[Query](#Query)</code>
+  * [.from(from)](#Query+from) ⇒ <code>[Query](#Query)</code>
+  * [.output(output)](#Query+output) ⇒ <code>[Query](#Query)</code>
+  * [.mode(mode)](#Query+mode) ⇒ <code>[Query](#Query)</code>
+
+<a name="new_Query_new"></a>
+### new Query()
+Represent a Query to send to Ahrefs api
+
+<a name="Query+select"></a>
+### query.select(select) ⇒ <code>[Query](#Query)</code>
+Set the select parameter.
+
+Can be either a column name or an array of columns
+
+**Kind**: instance method of <code>[Query](#Query)</code>  
+**Returns**: <code>[Query](#Query)</code> - The instance on which this method was called.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| select | <code>string</code> &#124; <code>Array.&lt;string&gt;</code> | Column(s) to select |
+
+<a name="Query+orderBy"></a>
+### query.orderBy(select) ⇒ <code>[Query](#Query)</code>
+Set the order_by parameter.
+
+Can be either a column name or an array of columns
+
+**Kind**: instance method of <code>[Query](#Query)</code>  
+**Returns**: <code>[Query](#Query)</code> - The instance on which this method was called.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| select | <code>string</code> &#124; <code>Array.&lt;string&gt;</code> | Column(s) to order by |
+
+<a name="Query+where"></a>
+### query.where(operator, column, value) ⇒ <code>[Query](#Query)</code>
+Add a where clause.
+
+This method can be called multiple times
+
+**Kind**: instance method of <code>[Query](#Query)</code>  
+**Returns**: <code>[Query](#Query)</code> - The instance on which this method was called.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| operator | <code>string</code> | One of ["eq","ne","lt", "gt", "lte", "gte", "substring","word","subdomain"] |
+| column | <code>string</code> | Column to set the where condition on |
+| value | <code>mixed</code> | Where condition value |
+
+<a name="Query+having"></a>
+### query.having(operator, column, value) ⇒ <code>[Query](#Query)</code>
+Add a having clause.
+
+This method can be called multiple times
+
+**Kind**: instance method of <code>[Query](#Query)</code>  
+**Returns**: <code>[Query](#Query)</code> - The instance on which this method was called.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| operator | <code>string</code> | One of ["eq","ne","lt", "gt", "lte", "gte", "substring","word","subdomain"] |
+| column | <code>string</code> | Column to set the having condition on |
+| value | <code>mixed</code> | Having condition value |
+
+<a name="Query+target"></a>
+### query.target(target) ⇒ <code>[Query](#Query)</code>
+Set the target parameter
+
+**Kind**: instance method of <code>[Query](#Query)</code>  
+**Returns**: <code>[Query](#Query)</code> - The instance on which this method was called.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| target | <code>string</code> | Request target. E.g. an url |
+
+<a name="Query+limit"></a>
+### query.limit(limit) ⇒ <code>[Query](#Query)</code>
+Set the limit parameter
+
+**Kind**: instance method of <code>[Query](#Query)</code>  
+**Returns**: <code>[Query](#Query)</code> - The instance on which this method was called.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| limit | <code>integer</code> | Number of results to return |
+
+<a name="Query+offset"></a>
+### query.offset(offset) ⇒ <code>[Query](#Query)</code>
+Set the offset parameter
+
+**Kind**: instance method of <code>[Query](#Query)</code>  
+**Returns**: <code>[Query](#Query)</code> - The instance on which this method was called.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| offset | <code>integer</code> | Position from which to start returning data |
+
+<a name="Query+from"></a>
+### query.from(from) ⇒ <code>[Query](#Query)</code>
+Set the from parameter
+
+**Kind**: instance method of <code>[Query](#Query)</code>  
+**Returns**: <code>[Query](#Query)</code> - The instance on which this method was called.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| from | <code>string</code> | Table to select data from |
+
+<a name="Query+output"></a>
+### query.output(output) ⇒ <code>[Query](#Query)</code>
+Set the output parameter.
+Default output is set to json
+
+**Kind**: instance method of <code>[Query](#Query)</code>  
+**Returns**: <code>[Query](#Query)</code> - The instance on which this method was called.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| output | <code>string</code> | Output format. One of xml or json |
+
+<a name="Query+mode"></a>
+### query.mode(mode) ⇒ <code>[Query](#Query)</code>
+Set the mode parameter
+Default mode is set to `exact`
+
+**Kind**: instance method of <code>[Query](#Query)</code>  
+**Returns**: <code>[Query](#Query)</code> - The instance on which this method was called.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| mode | <code>string</code> | Mode of operation: exact, domain, subdomains or prefix |
+
+<a name="ValidationError"></a>
+## ValidationError
+**Kind**: global class  
+<a name="new_ValidationError_new"></a>
+### new ValidationError()
+Error thrown during validation
 
 ```javascript
-  var query = ahrefs.newQuery();
+try {
+  ahrefs.get(query, function(err){
+    if (err instanceof ahrefs.ValidationError) {
+       // Handle validation error
+    }
+  })
+}
 ```
 
-- - -
+<a name="ValidationError"></a>
+## ValidationError : <code>[ValidationError](#ValidationError)</code>
+Error class that will be thrown during the validation process
 
-### **query#target(_String_ target) -> query**
-
-Set the query target
-
-- **target** : A domain, a directory or an URL
+**Kind**: global variable  
+<a name="new_ValidationError_new"></a>
+### new ValidationError()
+Error thrown during validation
 
 ```javascript
-  query.target('ahrefs.com');
+try {
+  ahrefs.get(query, function(err){
+    if (err instanceof ahrefs.ValidationError) {
+       // Handle validation error
+    }
+  })
+}
 ```
 
-- - -
+<a name="responseCallback"></a>
+## responseCallback : <code>function</code>
+Define a callback called on response
 
-### **query#mode(_String_ mode) -> query**
+**Kind**: global typedef  
 
-Set the mode of operation.
-Mode is optional, by default query will be send in exact mode.
+| Param | Type | Description |
+| --- | --- | --- |
+| err | <code>Error</code> &#124; <code>null</code> | Error thrown during the request, null if the request has been executed correctly |
+| result | <code>object</code> &#124; <code>null</code> | Results return by the api or null if there is an error |
 
-- **mode** : One of `exact`, `domain`, `subdomains` or `prefix`
-
-```javascript
-  query.mode('subdomains');
-```
-
-- - -
-
-### **query#output(_String_ output) -> query**
-
-Set the response output format.
-Output is optional, by default you will receive a json response.
-
-- **output** : One of `xml` or `json`
-
-```javascript
-  query.output('xml');
-```
-
-- - -
-
-### **query#select(_Array_ columns) -> query**
-
-Alternative call syntax:
-**query#select(_String_ columnA, _String_ columnB, ...) -> query**
-
-Add a list of columns to select. Columns will be appended if called multiple times.
-
-- **columns** : Array of strings representing the columns of a table to select. See [Ahrefs api documentation](https://ahrefs.com/api/documentation) to get the complete list of columns by tables.
-
-```javascript
-  query.select('date', 'time');
-  // or
-  query.select(['anchors', 'backlinks']);
-```
-
-- - -
-
-### **query#from(_String_ from) -> query**
-
-Set the table to query to.
-
-- **from** : Table name. See [Ahrefs api documentation](https://ahrefs.com/api/documentation) to get the complete list of tables.
-
-```javascript
-  query.from('anchors');
-```
-
-- - -
-
-### **query#where(_String_ operator, _String_ column, _Mixed_ value) -> query**
-
-Add a where clause to the query.
-Multiple where clause can be added.
-
-- **operator** : One of `ne`, `eq`, `lt`, `gt`, `lte`, `gte`, `substring`, `word`, `subdomain`
-- **column**: Column to apply the condition
-- **value**: Condition value
-
-```javascript
-  query
-    .from('anchors')
-    .where('lt', 'backlinks', 10)
-    .where('word', 'anchor', 'link');
-```
-
-- - -
-
-### **query#having(_String_ target) -> query**
-
-Add a having clause to the query.
-Multiple having clause can be added.
-
-- **operator** : One of `ne`, `eq`, `lt`, `gt`, `lte`, `gte`, `substring`, `word`, `subdomain`
-- **column**: Column to apply the condition
-- **value**: Condition value
-
-```javascript
-  query
-    .from('anchors')
-    .having('lt', 'backlinks', 10)
-    .having('word', 'anchor', 'link');
-```
-
-- - -
-
-### **query#orderBy(_Array_ columns) -> query**
-
-Alternative call syntax:
-**query#orderBy(_String_ columnA, _String_ columnB, ...) -> query**
-
-Add a list of columns to sort by. Columns will be appended if called multiple times.
-
-- **columns** : Array of strings representing the columns of a table to order by. `:asc` or `:desc` can be suffixed to the column name to specify the sort direction
-
-```javascript
-  query.orderBy('date', 'time');
-  // or
-  query.orderBy(['anchors:desc', 'backlinks:asc']);
-```
-
-- - -
-
-### **query#limit(_Integer_ limit) -> query**
-
-Set the response limit.
-
-- **limit** : Number of results to return. Default : 1000.
-
-```javascript
-  query.limit(10);
-```
-
-- - -
-
-### **query#offset(_String_ target) -> query**
-
-Set the response offset.
-
-- **limit** : Position from which to start returning data. Default : 0.
-
-```javascript
-  query.offset(10);
-```
-
-- - -
