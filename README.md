@@ -74,6 +74,9 @@ var query = ahrefs.newQuery()
 // Run the query
 ahrefs.get(query, function(err, result){
   // do something
+  if (err instanceof ahrefs.ValidationError) {
+    // handle validation error
+  }
 });
 ```
 
